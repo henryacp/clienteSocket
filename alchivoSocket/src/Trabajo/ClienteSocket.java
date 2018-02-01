@@ -39,7 +39,7 @@ public class ClienteSocket {
     public String getMensaje() {
         return mensaje;
     }
-
+        //Login de usuario 
     public ClienteSocket(String usuario, char[] pass) {
         try {
             inicio();
@@ -50,6 +50,7 @@ public class ClienteSocket {
             dos.writeUTF(String.valueOf(pass));
             //retorna un numero de control de transacciones 
             numero = dis.readUTF();
+            //evalua la transaccion
             if (numero != "false") {
                 acceso = true;
             } else {
@@ -61,11 +62,11 @@ public class ClienteSocket {
         }
 
     }
-
+        //respuesta de acceso 
     public boolean isAcceso() {
         return acceso;
     }
-
+            //finaliza el anvio dedatos cierra la coneccion
     private void finData() {
         try {
             dis.close();
