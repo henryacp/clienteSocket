@@ -131,7 +131,8 @@ public class ClienteSocket {
         }
 
     }
-    private boolean enviado(String filename){
+    //para enviar archivos 
+    public boolean enviado(String filename){
     this.filename=filename;
     enviaFichero();
     return mensaje.equals("Archivo recivido con exito");
@@ -155,7 +156,7 @@ public class ClienteSocket {
             //enviamos codigo de verificacion 
             comprueba();
             //Enviamos el nombre del fichero
-            dos.writeUTF(localFile.getName());
+           dos.writeUTF(localFile.getName());
             byteArray = new byte[8192];
             while ((in = bis.read(byteArray)) != -1) {
              bos.write(byteArray, 0, in);
