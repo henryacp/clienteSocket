@@ -26,7 +26,7 @@ public class ClienteSocket {
     private byte[] byteArray;
     private boolean acceso;
     private InetAddress servidor;
-    private int puerto = 500;
+    private int puerto = 8888 ;
     private Socket client;
     private DataOutputStream dos;
     private DataInputStream dis;
@@ -78,7 +78,7 @@ public class ClienteSocket {
     }
 
     private void inicioData() {
-
+        //inicia el anvio de archivos
         try {
             dos = new DataOutputStream(client.getOutputStream());
             dis = new DataInputStream(client.getInputStream());
@@ -88,7 +88,7 @@ public class ClienteSocket {
         }
 
     }
-
+    // inicio de sockets
     private void inicio() {
         try {
             servidor = InetAddress.getByName("localhost");
@@ -102,7 +102,7 @@ public class ClienteSocket {
         }
 
     }
-
+    // encripta a md5 
     private String crypt(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
