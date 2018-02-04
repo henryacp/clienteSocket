@@ -35,6 +35,12 @@ public class ClienteSocket {
     private File localFile;
     private String mensaje;
     private String filename;
+    private static String NUMEROS = "0123456789"; 
+	public static String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	public static String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
+	
+	private static final char[] CONSTS_HEX = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' }; // cadena de carracteres para el cifrado de claves
+	
     
     public String getMensaje() {
         return mensaje;
@@ -104,19 +110,22 @@ public class ClienteSocket {
     }
     // encripta a md5 
     private String crypt(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(input.getBytes());
-            BigInteger number = new BigInteger(1, messageDigest);
-            String hashtext = number.toString(16);
-
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+        try
+		{
+			MessageDigest msgd = MessageDigest.getInstance("MD5");
+			byte[] bytes = msgd.digest(input.getBytes());
+			StringBuilder strbCadenaMD5 = new StringBuilder(2 * bytes.length);
+			for (int i = 0; i < bytes.length; i++)
+			{
+				int bajo = bytes[i] & 0x0f;
+				int alto = (bytes[i] & 0xf0) >> 4;
+			strbCadenaMD5.append(CONSTS_HEX[alto]);
+			strbCadenaMD5.append(CONSTS_HEX[bajo]);
+			}
+			return strbCadenaMD5.toString();
+		} catch (NoSuchAlgorithmException e) {
+			return null;
+		}
     }
 
     private void inicioBuffer() {
