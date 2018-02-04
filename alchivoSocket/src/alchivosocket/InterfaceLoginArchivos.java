@@ -14,6 +14,7 @@ import com.placeholder.PlaceHolder;
  */
 public class InterfaceLoginArchivos extends javax.swing.JFrame {
     private PlaceHolder holder;
+    private ClienteSocket cs;
     private String ruta;
     /**
      * Creates new form InterfaceLoginArchivos
@@ -21,12 +22,14 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
     public InterfaceLoginArchivos() {
         
         initComponents();
+        
         holder=new PlaceHolder(jTextfieldLoginNombre, "Ingrese su usuario o ID");
        jPasswordFieldLoginPass.setEchoChar((char)0);
         holder=new PlaceHolder(jPasswordFieldLoginPass, "Ingrese su contraseña personal");
         jPanelManejoArchivos.setVisible(false);
         jTabbedPane.remove(jPanelCrearUsuario);
         jTabbedPane.remove(jPanelManejoArchivos);
+        
     }
 
     /**
@@ -207,6 +210,11 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jLabel3.setText("Trabajos Subidos");
 
         jButtonMADescarga.setText("Descargar +");
+        jButtonMADescarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMADescargaActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Cerrar Sesion");
 
@@ -422,7 +430,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
        // ClienteSocket cs=new ClienteSocket(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
                 jTabbedPane.add("Manejo de archivos",jPanelManejoArchivos);
-
+              //if   
        jTabbedPane.setSelectedComponent(jPanelManejoArchivos);
         jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
         jTabbedPane.remove(jPanelLogin);
@@ -436,6 +444,8 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
         rutas();
         jTextFieldMARuta.setText(ruta);
+         //cs.descargar(jListMAArchivosEnServidor.getSelectedValue(), ruta);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextFieldCUTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCUTelefonoActionPerformed
@@ -462,6 +472,12 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         jTabbedPane.setSelectedComponent(jPanelCrearUsuario);
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButtonMADescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMADescargaActionPerformed
+        // TODO add your handling code here:
+        rutas();
+        
+    }//GEN-LAST:event_jButtonMADescargaActionPerformed
 
     /**
      * @param args the command line arguments

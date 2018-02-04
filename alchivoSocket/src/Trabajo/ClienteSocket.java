@@ -35,7 +35,7 @@ public class ClienteSocket {
     private File localFile;
     private String mensaje;
     private String filename;
-
+    
     public String getMensaje() {
         return mensaje;
     }
@@ -132,6 +132,38 @@ public class ClienteSocket {
 
     }
     //para enviar archivos 
+    public String[] archivos(){
+        String []lista = null;
+        inicioData();
+        try {
+            //4 para envio de parametro para listar archivos
+            dos.writeUTF("4");
+            lista =dis.readUTF().split(":");
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finData();
+        return lista;
+    }
+    public void descargar (String archivo, String path){
+        try {
+            inicioBuffer();
+            inicioData();
+            //Recibimos el nombre del fichero
+            byteArray = new byte[8192];
+            filename = dis.readUTF();
+            filename = filename.substring(filename.indexOf('\\')+1,filename.length());
+             bos = new BufferedOutputStream(new FileOutputStream(filename));
+            while ((in = bis.read(byteArray)) != -1){
+                    bos.write(byteArray,0,in);
+                    }
+            finBuffer();
+            finData();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
     public boolean enviado(String filename){
     this.filename=filename;
     enviaFichero();
