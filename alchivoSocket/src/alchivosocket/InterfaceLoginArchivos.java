@@ -5,7 +5,7 @@
  */
 package alchivosocket;
 
-import Trabajo.ClienteSocket;
+import Trabajo.ManejoVisual;
 import com.placeholder.PlaceHolder;
 
 /**
@@ -14,8 +14,9 @@ import com.placeholder.PlaceHolder;
  */
 public class InterfaceLoginArchivos extends javax.swing.JFrame {
     private PlaceHolder holder;
-    private ClienteSocket cs;
+    private ManejoVisual mv;
     private String ruta;
+    
     /**
      * Creates new form InterfaceLoginArchivos
      */
@@ -299,6 +300,11 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jDateChooserCUNacimiento.setPreferredSize(new java.awt.Dimension(45, 10));
 
         jButton6.setText("Guardar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Cancelar");
 
@@ -430,7 +436,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
        // ClienteSocket cs=new ClienteSocket(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
                 jTabbedPane.add("Manejo de archivos",jPanelManejoArchivos);
-              //if   
+              if   
        jTabbedPane.setSelectedComponent(jPanelManejoArchivos);
         jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
         jTabbedPane.remove(jPanelLogin);
@@ -478,6 +484,11 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         rutas();
         
     }//GEN-LAST:event_jButtonMADescargaActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

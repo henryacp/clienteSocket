@@ -7,12 +7,8 @@ package Trabajo;
 
 import java.net.*;
 import java.io.*;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.net.ssl.SSLSocket;
 
 /**
  *
@@ -30,22 +26,153 @@ public class ClienteSocket {
     private Socket client;
     private DataOutputStream dos;
     private DataInputStream dis;
-    private String numero;
     private String usuario;
     private File localFile;
     private String mensaje;
     private String filename;
-    private static String NUMEROS = "0123456789"; 
-	public static String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	public static String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
-	
-	private static final char[] CONSTS_HEX = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' }; // cadena de carracteres para el cifrado de claves
-	
-    
+   
+        public void inicio() {
+        try {
+            servidor = InetAddress.getByName("localhost");
+            client = new Socket(servidor, puerto);
+            mensaje="";
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        public void inicioData() {
+        //inicia el anvio de archivos
+        try {
+            dos = new DataOutputStream(client.getOutputStream());
+            dis = new DataInputStream(client.getInputStream());
+
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+           private void inicioBuffer() {
+        try {
+            bis = new BufferedInputStream(new FileInputStream(localFile));
+            bos = new BufferedOutputStream(client.getOutputStream());
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+        
+        public void envioData (String datos){
+        try {
+            dos.writeUTF(datos);
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        public void reciveData (){
+            
+        try {
+            mensaje =dis.readUTF();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     public String getMensaje() {
         return mensaje;
+    }    
+    private void enviaFichero() {
+        localFile = new File(filename);
+        try {
+            //inicioBuffer();
+            //inicioData();
+            //enviamos codigo de verificacion 
+            //comprueba();
+            //Enviamos el nombre del fichero
+           //dos.writeUTF(localFile.getName());
+            byteArray = new byte[8192];
+            while ((in = bis.read(byteArray)) != -1) {
+             bos.write(byteArray, 0, in);
+            }
+            //mensaje=dis.readUTF();
+            //finBuffer();
+            //finData();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }    
+    public void descargar (String archivo, String path){
+        try {
+            //Recibimos el nombre del fichero
+            byteArray = new byte[8192];
+           /// filename = dis.readUTF();
+            filename = filename.substring(filename.indexOf('\\')+1,filename.length());
+             BufferedOutputStream bos1 = new BufferedOutputStream(new FileOutputStream(filename));
+            while ((in = bis.read(byteArray)) != -1){
+                    bos1.write(byteArray,0,in);
+                    }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
+        
+        public void finData() {
+        try {
+            dis.close();
+            dos.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+        
+         public void finCierre(){
+        try {
+            client.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+////////////      
+    
         //Login de usuario 
+   /*
     public ClienteSocket(String usuario, char[] pass) {
         try {
             inicio();
@@ -73,41 +200,11 @@ public class ClienteSocket {
         return acceso;
     }
             //finaliza el anvio dedatos cierra la coneccion
-    private void finData() {
-        try {
-            dis.close();
-            dos.close();
+    
 
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void inicioData() {
-        //inicia el anvio de archivos
-        try {
-            dos = new DataOutputStream(client.getOutputStream());
-            dis = new DataInputStream(client.getInputStream());
-
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+    
     // inicio de sockets
-    private void inicio() {
-        try {
-            servidor = InetAddress.getByName("localhost");
-            client = new Socket(servidor, puerto);
-
-            inicioData();
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+    
     // encripta a md5 
     private String crypt(String input) {
         try
@@ -128,55 +225,25 @@ public class ClienteSocket {
 		}
     }
 
-    private void inicioBuffer() {
-        try {
-            bis = new BufferedInputStream(new FileInputStream(localFile));
-            bos = new BufferedOutputStream(client.getOutputStream());
 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
     //para enviar archivos 
     public String[] archivos(){
         String []lista = null;
         inicioData();
         try {
             //4 para envio de parametro para listar archivos
-            dos.writeUTF("4");
-            lista =dis.readUTF().split(":");
+            dos.writeUTF("5");
         } catch (IOException ex) {
             Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
         finData();
         return lista;
     }
-    public void descargar (String archivo, String path){
-        try {
-            inicioBuffer();
-            inicioData();
-            //Recibimos el nombre del fichero
-            byteArray = new byte[8192];
-            filename = dis.readUTF();
-            filename = filename.substring(filename.indexOf('\\')+1,filename.length());
-             bos = new BufferedOutputStream(new FileOutputStream(filename));
-            while ((in = bis.read(byteArray)) != -1){
-                    bos.write(byteArray,0,in);
-                    }
-            finBuffer();
-            finData();
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }
+    
     public boolean enviado(String filename){
     this.filename=filename;
     enviaFichero();
-    return mensaje.equals("Archivo recivido con exito");
+    return mensaje.equals("Archivo ingresado");
     }
     private void finBuffer() {
 
@@ -189,30 +256,7 @@ public class ClienteSocket {
         }
     }
 
-    private void enviaFichero() {
-        localFile = new File(filename);
-        try {
-            inicioBuffer();
-            inicioData();
-            //enviamos codigo de verificacion 
-            comprueba();
-            //Enviamos el nombre del fichero
-           dos.writeUTF(localFile.getName());
-            byteArray = new byte[8192];
-            while ((in = bis.read(byteArray)) != -1) {
-             bos.write(byteArray, 0, in);
-            }
-            mensaje=dis.readUTF();
-            finBuffer();
-            finData();
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+    
 
     private void comprueba() {
 
@@ -223,4 +267,5 @@ public class ClienteSocket {
         }
 
     }
+*/
 }
