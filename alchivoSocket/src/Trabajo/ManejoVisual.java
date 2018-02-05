@@ -36,7 +36,7 @@ public class ManejoVisual {
         
     }
     
-       public ManejoVisual(String nombres,String email,String usuario,char[]pass) {
+       public ManejoVisual(String nombres,String email,String usuario,String fecha,char[]pass) {
         //this.cs = new ClienteSocket(usuario, pass);
          cs = new ClienteSocket();
        opcion=1+"";
