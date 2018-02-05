@@ -29,6 +29,18 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         holder=new PlaceHolder(jTextfieldLoginNombre, "Ingrese su usuario o ID");
        jPasswordFieldLoginPass.setEchoChar((char)0);
         holder=new PlaceHolder(jPasswordFieldLoginPass, "Ingrese su contraseña personal");
+        holder=new PlaceHolder(jTextFieldCUNombre, "Ingrese sus Nombres");
+         holder=new PlaceHolder(jTextFieldCUTelefono, "Ingrese su numero telefónico");
+        holder=new PlaceHolder(jTextFieldCUSeudonimo, "Ingrese un seudonimo valido");
+        holder=new PlaceHolder(jTextFieldCUCorreo1, "Ingrese su correo electrónico");
+        holder=new PlaceHolder(jTextFieldCUCorreo2, "Repita su correo");
+        holder=new PlaceHolder(jTextFieldMARuta, "Ingrese una ruta de o para su archivo");
+      jPasswordFieldPass2.setEchoChar((char)0);
+        holder=new PlaceHolder(jPasswordFieldPass2, "Ingrese su contraseña personal");
+       jPasswordField1.setEchoChar((char)0);
+        holder=new PlaceHolder(jPasswordField1, "Ingrese su contraseña personal");
+        
+       
         jPanelManejoArchivos.setVisible(false);
         jTabbedPane.remove(jPanelCrearUsuario);
         jTabbedPane.remove(jPanelManejoArchivos);
@@ -81,10 +93,10 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jTextFieldCUCorreo2 = new javax.swing.JTextField();
         jTextFieldCUTelefono = new javax.swing.JTextField();
         jDateChooserCUNacimiento = new com.toedter.calendar.JDateChooser();
-        jTextFieldCUPass = new javax.swing.JTextField();
-        jTextFieldCUPass2 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jPasswordFieldPass2 = new javax.swing.JPasswordField();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -311,37 +323,62 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
 
         jButton7.setText("Cancelar");
 
+        jPasswordFieldPass2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordFieldPass2FocusLost(evt);
+            }
+        });
+        jPasswordFieldPass2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordFieldPass2KeyTyped(evt);
+            }
+        });
+
+        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusLost(evt);
+            }
+        });
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCrearUsuarioLayout = new javax.swing.GroupLayout(jPanelCrearUsuario);
         jPanelCrearUsuario.setLayout(jPanelCrearUsuarioLayout);
         jPanelCrearUsuarioLayout.setHorizontalGroup(
             jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCrearUsuarioLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton6)
-                    .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextFieldCUPass)
-                        .addComponent(jTextFieldCUNombre)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldCUCorreo1)
-                        .addComponent(jTextFieldCUTelefono)))
+                    .addComponent(jTextFieldCUNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCUCorreo1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCUTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanelCrearUsuarioLayout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(jTextFieldCUSeudonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel11)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextFieldCUCorreo2)
-                        .addComponent(jTextFieldCUPass2)
-                        .addComponent(jDateChooserCUNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton7))
+                .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelCrearUsuarioLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jTextFieldCUSeudonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldCUCorreo2)
+                    .addComponent(jDateChooserCUNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7)
+                    .addComponent(jPasswordFieldPass2))
                 .addContainerGap())
         );
         jPanelCrearUsuarioLayout.setVerticalGroup(
@@ -377,13 +414,13 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCUPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCUPass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordFieldPass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Crear Usuario", jPanelCrearUsuario);
@@ -503,7 +540,41 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         
+        ManejoVisual mv=new ManejoVisual(jTextFieldCUNombre.getText(), jTextFieldCUCorreo1.getText(), jTextFieldCUSeudonimo.getText(), jDateChooserCUNacimiento.getDateFormatString(), jPasswordField1.getPassword());
+        
+        
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jPasswordFieldPass2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldPass2FocusLost
+        // TODO add your handling code here:
+        if(String.valueOf(jPasswordFieldPass2.getPassword()).equals("")){
+      jPasswordFieldPass2.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_jPasswordFieldPass2FocusLost
+
+    private void jPasswordFieldPass2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldPass2KeyTyped
+        // TODO add your handling code here:
+         jPasswordFieldPass2.setEchoChar('•');
+    }//GEN-LAST:event_jPasswordFieldPass2KeyTyped
+
+    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+        // TODO add your handling code here:
+        if(String.valueOf(jPasswordField1.getPassword()).equals("")){
+      jPasswordField1.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_jPasswordField1FocusLost
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        // TODO add your handling code here:
+                 jPasswordField1.setEchoChar('•');
+
+    }//GEN-LAST:event_jPasswordField1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -581,14 +652,14 @@ ex.printStackTrace();
     private javax.swing.JPanel jPanelCrearUsuario;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelManejoArchivos;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordFieldLoginPass;
+    private javax.swing.JPasswordField jPasswordFieldPass2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTextField jTextFieldCUCorreo1;
     private javax.swing.JTextField jTextFieldCUCorreo2;
     private javax.swing.JTextField jTextFieldCUNombre;
-    private javax.swing.JTextField jTextFieldCUPass;
-    private javax.swing.JTextField jTextFieldCUPass2;
     private javax.swing.JTextField jTextFieldCUSeudonimo;
     private javax.swing.JTextField jTextFieldCUTelefono;
     private javax.swing.JTextField jTextFieldMARuta;
