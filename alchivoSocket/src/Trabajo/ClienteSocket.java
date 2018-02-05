@@ -53,7 +53,7 @@ public class ClienteSocket {
         }
 
     }
-           private void inicioBuffer() {
+           public void inicioBuffer() {
         try {
             bis = new BufferedInputStream(new FileInputStream(localFile));
             bos = new BufferedOutputStream(client.getOutputStream());
@@ -92,7 +92,7 @@ public class ClienteSocket {
             //enviamos codigo de verificacion 
             //comprueba();
             //Enviamos el nombre del fichero
-           //dos.writeUTF(localFile.getName());
+           dos.writeUTF(localFile.getName());
             byteArray = new byte[1024];
             while ((in = bis.read(byteArray)) != -1) {
              bos.write(byteArray, 0, in);
@@ -124,7 +124,16 @@ public class ClienteSocket {
         }
        
     }
-        
+        public void finBuffer() {
+
+        try {
+            bis.close();
+            bos.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
         public void finData() {
         try {
             dis.close();
@@ -245,16 +254,7 @@ public class ClienteSocket {
     enviaFichero();
     return mensaje.equals("Archivo ingresado");
     }
-    private void finBuffer() {
-
-        try {
-            bis.close();
-            bos.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     
 

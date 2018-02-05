@@ -8,6 +8,7 @@ package alchivosocket;
 import Trabajo.ManejoVisual;
 import com.placeholder.PlaceHolder;
 import java.io.File;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -451,6 +452,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         jF1= new javax.swing.JFileChooser(); 
+        jF1.setFileSelectionMode(JFileChooser.FILES_ONLY);
         rutas();
         jTextFieldMARuta.setText(ruta);
          //cs.descargar(jListMAArchivosEnServidor.getSelectedValue(), ruta);
@@ -488,6 +490,8 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         //Creamos el filtro
 //FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
         jF1.setSelectedFile(new File(jListMAArchivosEnServidor.getSelectedValue()));
+                jF1.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
 //Le indicamos el filtro
 //jF1.setFileFilter(filtro);
         rutas();

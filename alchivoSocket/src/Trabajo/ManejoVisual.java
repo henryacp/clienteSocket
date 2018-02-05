@@ -32,6 +32,7 @@ public class ManejoVisual {
         cs.envioData(String.valueOf(pass));
         cierre();
         numero=mensaje;
+        mensaje="";
         
     }
     
@@ -46,29 +47,28 @@ public class ManejoVisual {
         cs.envioData(String.valueOf(pass));
         cierre();
         numero=mensaje;
-        
+        mensaje="";
+
 
        }    
-       private String crypt(String input) {
-        try
-		{
-			MessageDigest msgd = MessageDigest.getInstance("MD5");
-			byte[] bytes = msgd.digest(input.getBytes());
-			StringBuilder strbCadenaMD5 = new StringBuilder(2 * bytes.length);
-			for (int i = 0; i < bytes.length; i++)
-			{
-				int bajo = bytes[i] & 0x0f;
-				int alto = (bytes[i] & 0xf0) >> 4;
-			strbCadenaMD5.append(CONSTS_HEX[alto]);
-			strbCadenaMD5.append(CONSTS_HEX[bajo]);
-			}
-			return strbCadenaMD5.toString();
-		} catch (NoSuchAlgorithmException e) {
-			return null;
-		}
+
+    public String getMensaje() {
+        return mensaje;
     }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+      
        
        public void envioArchivo (){
+           cs=new ClienteSocket();
+           opcion=5+"";
+            inicio();    
+            inicioBR();
+           cs.envioData(numero);
+           //en mensaje envio path
+            cs.enviaFichero(mensaje);
             
             //inicioBuffer();
             //inicioData();
@@ -82,7 +82,10 @@ public class ManejoVisual {
         cs.inicioData();
         cs.envioData(opcion);
        }
-    
+       private void inicioBR(){
+           cs.inicioBuffer();
+           
+       }
        private void cierre(){
            cs.reciveData();
         mensaje=cs.getMensaje();
