@@ -30,12 +30,22 @@ public class ManejoVisual {
          inicio();
         cs.envioData(usuario);
         cs.envioData(String.valueOf(pass));
-        
+        cierre();
+        numero=mensaje;
         
     }
     
        public ManejoVisual(String nombres,String email,String usuario,char[]pass) {
         //this.cs = new ClienteSocket(usuario, pass);
+         cs = new ClienteSocket();
+       opcion=1+"";
+         inicio();
+         cs.envioData(nombres);
+         cs.envioData(email);
+        cs.envioData(usuario);
+        cs.envioData(String.valueOf(pass));
+        cierre();
+        numero=mensaje;
         
 
        }    
@@ -57,6 +67,16 @@ public class ManejoVisual {
 			return null;
 		}
     }
+       
+       public void envioArchivo (){
+            
+            //inicioBuffer();
+            //inicioData();
+            //enviamos codigo de verificacion 
+            //comprueba();
+            //Enviamos el nombre del fichero
+           //dos.writeUTF(localFile.getName());
+       }
        private void inicio(){
            cs.inicio();
         cs.inicioData();
@@ -65,7 +85,7 @@ public class ManejoVisual {
     
        private void cierre(){
            cs.reciveData();
-        numero=cs.getMensaje();
+        mensaje=cs.getMensaje();
         cs.finData();
         cs.finCierre();
        }

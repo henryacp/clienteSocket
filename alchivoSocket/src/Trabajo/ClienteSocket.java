@@ -29,7 +29,7 @@ public class ClienteSocket {
     private String usuario;
     private File localFile;
     private String mensaje;
-    private String filename;
+   // private String filename;
    
         public void inicio() {
         try {
@@ -84,7 +84,7 @@ public class ClienteSocket {
     public String getMensaje() {
         return mensaje;
     }    
-    private void enviaFichero() {
+    public void enviaFichero(String filename) {
         localFile = new File(filename);
         try {
             //inicioBuffer();
@@ -93,7 +93,7 @@ public class ClienteSocket {
             //comprueba();
             //Enviamos el nombre del fichero
            //dos.writeUTF(localFile.getName());
-            byteArray = new byte[8192];
+            byteArray = new byte[1024];
             while ((in = bis.read(byteArray)) != -1) {
              bos.write(byteArray, 0, in);
             }
@@ -113,7 +113,7 @@ public class ClienteSocket {
             //Recibimos el nombre del fichero
             byteArray = new byte[8192];
            /// filename = dis.readUTF();
-            filename = filename.substring(filename.indexOf('\\')+1,filename.length());
+           String  filename = path+"\\"+archivo;
              BufferedOutputStream bos1 = new BufferedOutputStream(new FileOutputStream(filename));
             while ((in = bis.read(byteArray)) != -1){
                     bos1.write(byteArray,0,in);

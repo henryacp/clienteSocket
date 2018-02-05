@@ -7,6 +7,7 @@ package alchivosocket;
 
 import Trabajo.ManejoVisual;
 import com.placeholder.PlaceHolder;
+import java.io.File;
 
 /**
  *
@@ -16,7 +17,7 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
     private PlaceHolder holder;
     private ManejoVisual mv;
     private String ruta;
-    
+    private javax.swing.JFileChooser jF1;
     /**
      * Creates new form InterfaceLoginArchivos
      */
@@ -30,6 +31,7 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jPanelManejoArchivos.setVisible(false);
         jTabbedPane.remove(jPanelCrearUsuario);
         jTabbedPane.remove(jPanelManejoArchivos);
+        
         
     }
 
@@ -436,7 +438,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
        // ClienteSocket cs=new ClienteSocket(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
                 jTabbedPane.add("Manejo de archivos",jPanelManejoArchivos);
-              if   
+              //if   
        jTabbedPane.setSelectedComponent(jPanelManejoArchivos);
         jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
         jTabbedPane.remove(jPanelLogin);
@@ -448,6 +450,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        jF1= new javax.swing.JFileChooser(); 
         rutas();
         jTextFieldMARuta.setText(ruta);
          //cs.descargar(jListMAArchivosEnServidor.getSelectedValue(), ruta);
@@ -466,7 +469,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
 
     private void jListMAArchivosEnServidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMAArchivosEnServidorMouseClicked
         // TODO add your handling code here:
-        jButtonMADescarga.setText("Descarga "+jListMAArchivosEnServidor.getSelectedValue());
+        jButtonMADescarga.setText("Descargar "+jListMAArchivosEnServidor.getSelectedValue());
         System.out.println(jListMAArchivosEnServidor.getSelectedValue());
     }//GEN-LAST:event_jListMAArchivosEnServidorMouseClicked
 
@@ -481,7 +484,15 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
 
     private void jButtonMADescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMADescargaActionPerformed
         // TODO add your handling code here:
+        jF1= new javax.swing.JFileChooser(); 
+        //Creamos el filtro
+//FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.TXT", "txt");
+        jF1.setSelectedFile(new File(jListMAArchivosEnServidor.getSelectedValue()));
+//Le indicamos el filtro
+//jF1.setFileFilter(filtro);
         rutas();
+                jTextFieldMARuta.setText(ruta);
+
         
     }//GEN-LAST:event_jButtonMADescargaActionPerformed
 
@@ -525,7 +536,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         });
     }
     private void rutas(){
-        javax.swing.JFileChooser jF1= new javax.swing.JFileChooser(); 
+        
 ruta = ""; 
 try{ 
 if(jF1.showSaveDialog(null)==jF1.APPROVE_OPTION){ 
