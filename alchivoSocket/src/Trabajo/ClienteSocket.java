@@ -130,12 +130,12 @@ public class ClienteSocket {
         }
 
     }    
-    public void descargar (String archivo, String path){
+    public void descargar (String archivo){
         try {
             //Recibimos el nombre del fichero
             byteArray = new byte[8192];
            /// filename = dis.readUTF();
-           String  filename = path+"\\"+archivo;
+           String  filename = archivo;
              BufferedOutputStream bos1 = new BufferedOutputStream(new FileOutputStream(filename));
             while ((in = bis.read(byteArray)) != -1){
                     bos1.write(byteArray,0,in);

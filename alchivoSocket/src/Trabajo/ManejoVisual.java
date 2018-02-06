@@ -38,7 +38,8 @@ public class ManejoVisual {
          cs.envioData(email);
         cs.envioData(usuario);
         cs.envioData(String.valueOf(pass));
-        
+          cs.reciveData();
+        mensaje=cs.getMensaje();
         cierre();
         mensaje="";
 
@@ -62,7 +63,6 @@ public class ManejoVisual {
        mensaje=cs.getMensaje();
     }
     public void envioArchivo(String archivo){
-           opcion=5+"";
            mensaje=archivo;
            envioArchivo();
            
@@ -126,8 +126,22 @@ public class ManejoVisual {
            //cs.envioData(numero);
            //en mensaje envio path
             cs.enviaFichero(mensaje);
-            
+            cs.finBuffer();
+            cierre();
        }
+       public void recibeArchivo (String archivo){
+           opcion=8+"";
+           inicio();
+           inicioBR();
+           cs.descargar(archivo);
+           cs.finBuffer();
+           cierre();
+           
+       }
+       
+       
+       
+       
        private void inicio(){
            cs.inicio();
         cs.inicioData();
@@ -137,8 +151,7 @@ public class ManejoVisual {
            cs.inicioBuffer();    
        }
        private void cierre(){
-           cs.reciveData();
-        mensaje=cs.getMensaje();
+         
         cs.finData();
         cs.finCierre();
        }
