@@ -217,6 +217,11 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListMAArchivosEnServidor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jListMAArchivosEnServidorFocusLost(evt);
+            }
+        });
         jListMAArchivosEnServidor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListMAArchivosEnServidorMouseClicked(evt);
@@ -226,7 +231,7 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
 
         jLabel3.setText("Trabajos Subidos");
 
-        jButtonMADescarga.setText("Descargar +");
+        jButtonMADescarga.setText("Descargar");
         jButtonMADescarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMADescargaActionPerformed(evt);
@@ -500,7 +505,8 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
 
     private void jButtonMABuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMABuscarActionPerformed
         // TODO add your handling code here:
-        jb
+        jButtonMASubir.setEnabled(true);
+        jButtonMADescarga.setEnabled(false);
         jF1= new javax.swing.JFileChooser(); 
         jF1.setFileSelectionMode(JFileChooser.FILES_ONLY);
         rutas();
@@ -521,8 +527,10 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
 
     private void jListMAArchivosEnServidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMAArchivosEnServidorMouseClicked
         // TODO add your handling code here:
-        jButtonMADescarga.setText("Descargar "+jListMAArchivosEnServidor.getSelectedValue());
-        System.out.println(jListMAArchivosEnServidor.getSelectedValue());
+                jButtonMASubir.setEnabled(false);
+        jButtonMADescarga.setEnabled(true);
+       // jButtonMADescarga.setText("Descargar "+jListMAArchivosEnServidor.getSelectedValue());
+        ////aqui no evalu el ultimo elemento selecionado 
     }//GEN-LAST:event_jListMAArchivosEnServidorMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -588,6 +596,12 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
                  jPasswordField1.setEchoChar('•');
 
     }//GEN-LAST:event_jPasswordField1KeyPressed
+
+    private void jListMAArchivosEnServidorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jListMAArchivosEnServidorFocusLost
+        // TODO add your handling code here:
+        //aqui si se evalua 
+        System.out.println(jListMAArchivosEnServidor.getSelectedValue());
+    }//GEN-LAST:event_jListMAArchivosEnServidorFocusLost
 
     /**
      * @param args the command line arguments

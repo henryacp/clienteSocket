@@ -5,8 +5,13 @@
  */
 package Trabajo;
 
+import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -17,11 +22,12 @@ public class ManejoVisual {
     private String numero;
     private String mensaje;
     private String opcion;
-     private static String NUMEROS = "0123456789"; 
-	public static String MAYUSCULAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	public static String MINUSCULAS = "abcdefghijklmnopqrstuvwxyz";
-	
-	private static final char[] CONSTS_HEX = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' }; // cadena de carracteres para el cifrado de claves
+    private String[] lista;
+    private String hora1;
+    private String hora2;
+    public String[] getLista() {
+        return lista;
+    }
 	
     
     public ManejoVisual(String usuario,char[]pass) {
@@ -30,12 +36,23 @@ public class ManejoVisual {
          inicio();
         cs.envioData(usuario);
         cs.envioData(String.valueOf(pass));
-        cierre();
-        numero=mensaje;
+        cs.reciveData();
+        numero=cs.getMensaje();
+        lista=cs.getListaArchivos();//envio de parametro 
+        cs.envioData(7+"");
+        cs.reciveData();
+        recalculoHora(cs.getMensaje());
         mensaje="";
+          cierre();
         
     }
-    
+    private void recalculoHora(String hora){
+        
+    }
+    private String obtenerHora(){
+        DateFormat df = new SimpleDateFormat("hh:mm:ss:SSS");
+            return df.format(new Date());
+    }
        public ManejoVisual(String nombres,String email,String usuario,String fecha,char[]pass) {
         //this.cs = new ClienteSocket(usuario, pass);
          cs = new ClienteSocket();
@@ -51,6 +68,28 @@ public class ManejoVisual {
 
 
        }    
+
+       
+       
+       private void manejoHora(String hora){
+           String comando = "cmd";
+            //String hora = "15:53:00";
+            String entrada = "time" + " " + hora;
+
+            try {
+                Process proceso = Runtime.getRuntime().exec(comando);
+                BufferedOutputStream out = new BufferedOutputStream(proceso.getOutputStream());
+                out.write(entrada.getBytes());
+                out.write("\r\n".getBytes());
+                out.flush();
+                out.close();
+                proceso.waitFor();
+            } catch (IOException ex) {
+                System.out.println("Error de I/O"+ex);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+                   }
 
     public String getMensaje() {
         return mensaje;
@@ -70,12 +109,6 @@ public class ManejoVisual {
            //en mensaje envio path
             cs.enviaFichero(mensaje);
             
-            //inicioBuffer();
-            //inicioData();
-            //enviamos codigo de verificacion 
-            //comprueba();
-            //Enviamos el nombre del fichero
-           //dos.writeUTF(localFile.getName());
        }
        private void inicio(){
            cs.inicio();

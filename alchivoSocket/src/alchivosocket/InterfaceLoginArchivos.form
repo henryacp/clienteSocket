@@ -270,6 +270,7 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jListMAArchivosEnServidorFocusLost"/>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jListMAArchivosEnServidorMouseClicked"/>
                       </Events>
                       <AuxValues>
@@ -285,7 +286,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonMADescarga">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Descargar +"/>
+                    <Property name="text" type="java.lang.String" value="Descargar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMADescargaActionPerformed"/>
