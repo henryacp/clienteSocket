@@ -28,12 +28,15 @@ public class ClienteSocket {
     private DataInputStream dis;
     private String usuario;
     private File localFile;
+    private InputStream is;
     private String mensaje;
+    private ObjectInputStream ois;
+    private String [] listaArchivos;
    // private String filename;
    
         public void inicio() {
         try {
-            servidor = InetAddress.getByName("localhost");
+            servidor = InetAddress.getByName("172.17.209.28");
             client = new Socket(servidor, puerto);
             mensaje="";
         } catch (UnknownHostException ex) {
@@ -45,6 +48,7 @@ public class ClienteSocket {
         public void inicioData() {
         //inicia el anvio de archivos
         try {
+            
             dos = new DataOutputStream(client.getOutputStream());
             dis = new DataInputStream(client.getInputStream());
 
@@ -65,7 +69,25 @@ public class ClienteSocket {
         }
 
     }
-        
+
+    public String[] getListaArchivos() {
+        return listaArchivos;
+    }
+        public void listaArchivos(){
+           
+        try {
+            ois = new ObjectInputStream(is);
+             listaArchivos = (String[]) ois.readObject();
+			for (int i = 0; i < listaArchivos.length; i++) {
+				System.out.println(listaArchivos[i]);
+			}
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+			
+        }
         public void envioData (String datos){
         try {
             dos.writeUTF(datos);

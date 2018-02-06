@@ -71,13 +71,13 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jLabelMAHeader = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldMARuta = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        jButtonMABuscar = new javax.swing.JButton();
         jButtonMASubir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListMAArchivosEnServidor = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
         jButtonMADescarga = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButtonMACerrarSesion = new javax.swing.JButton();
         jPanelCrearUsuario = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -93,10 +93,11 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jTextFieldCUCorreo2 = new javax.swing.JTextField();
         jTextFieldCUTelefono = new javax.swing.JTextField();
         jDateChooserCUNacimiento = new com.toedter.calendar.JDateChooser();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jButtonCUGuardar = new javax.swing.JButton();
+        jButtonCUCancelar = new javax.swing.JButton();
         jPasswordFieldPass2 = new javax.swing.JPasswordField();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,10 +198,10 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("...");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMABuscar.setText("...");
+        jButtonMABuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonMABuscarActionPerformed(evt);
             }
         });
 
@@ -232,7 +233,7 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Cerrar Sesion");
+        jButtonMACerrarSesion.setText("Cerrar Sesion");
 
         javax.swing.GroupLayout jPanelManejoArchivosLayout = new javax.swing.GroupLayout(jPanelManejoArchivos);
         jPanelManejoArchivos.setLayout(jPanelManejoArchivosLayout);
@@ -260,21 +261,21 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldMARuta, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton5))
+                        .addComponent(jButtonMABuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonMACerrarSesion))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelManejoArchivosLayout.setVerticalGroup(
             jPanelManejoArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelManejoArchivosLayout.createSequentialGroup()
-                .addComponent(jButton5)
+                .addComponent(jButtonMACerrarSesion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelMAHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelManejoArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldMARuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(jButtonMABuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonMASubir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -314,14 +315,14 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jDateChooserCUNacimiento.setMinSelectableDate(new java.util.Date(-1640973499000L));
         jDateChooserCUNacimiento.setPreferredSize(new java.awt.Dimension(45, 10));
 
-        jButton6.setText("Guardar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCUGuardar.setText("Guardar");
+        jButtonCUGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonCUGuardarActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Cancelar");
+        jButtonCUCancelar.setText("Cancelar");
 
         jPasswordFieldPass2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -350,35 +351,44 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Iniciode sesion");
+
         javax.swing.GroupLayout jPanelCrearUsuarioLayout = new javax.swing.GroupLayout(jPanelCrearUsuario);
         jPanelCrearUsuario.setLayout(jPanelCrearUsuarioLayout);
         jPanelCrearUsuarioLayout.setHorizontalGroup(
             jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCrearUsuarioLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton6)
-                    .addComponent(jTextFieldCUNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldCUCorreo1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldCUTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCrearUsuarioLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jTextFieldCUSeudonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldCUCorreo2)
-                    .addComponent(jDateChooserCUNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7)
-                    .addComponent(jPasswordFieldPass2))
+                        .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldCUNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCUCorreo1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCUTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanelCrearUsuarioLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jTextFieldCUSeudonimo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextFieldCUCorreo2)
+                            .addComponent(jDateChooserCUNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPasswordFieldPass2)))
+                    .addGroup(jPanelCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCUGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCUCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelCrearUsuarioLayout.setVerticalGroup(
@@ -418,8 +428,9 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(jButtonCUGuardar)
+                    .addComponent(jButtonCUCancelar)
+                    .addComponent(jButton4))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -475,7 +486,8 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        // ClienteSocket cs=new ClienteSocket(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
-                jTabbedPane.add("Manejo de archivos",jPanelManejoArchivos);
+              
+       jTabbedPane.add("Manejo de archivos",jPanelManejoArchivos);
               //if   
        jTabbedPane.setSelectedComponent(jPanelManejoArchivos);
         jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
@@ -486,15 +498,16 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldMARutaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonMABuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMABuscarActionPerformed
         // TODO add your handling code here:
+        jb
         jF1= new javax.swing.JFileChooser(); 
         jF1.setFileSelectionMode(JFileChooser.FILES_ONLY);
         rutas();
         jTextFieldMARuta.setText(ruta);
          //cs.descargar(jListMAArchivosEnServidor.getSelectedValue(), ruta);
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonMABuscarActionPerformed
 
     private void jTextFieldCUTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCUTelefonoActionPerformed
         // TODO add your handling code here:
@@ -537,7 +550,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         
     }//GEN-LAST:event_jButtonMADescargaActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButtonCUGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCUGuardarActionPerformed
         // TODO add your handling code here:
         
         ManejoVisual mv=new ManejoVisual(jTextFieldCUNombre.getText(), jTextFieldCUCorreo1.getText(), jTextFieldCUSeudonimo.getText(), jDateChooserCUNacimiento.getDateFormatString(), jPasswordField1.getPassword());
@@ -545,7 +558,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         
         
         
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jButtonCUGuardarActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
@@ -629,9 +642,10 @@ ex.printStackTrace();
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButtonCUCancelar;
+    private javax.swing.JButton jButtonCUGuardar;
+    private javax.swing.JButton jButtonMABuscar;
+    private javax.swing.JButton jButtonMACerrarSesion;
     private javax.swing.JButton jButtonMADescarga;
     private javax.swing.JButton jButtonMASubir;
     private javax.swing.JCheckBox jCheckBoxLoginPass;

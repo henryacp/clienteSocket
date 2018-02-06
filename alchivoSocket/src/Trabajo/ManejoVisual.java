@@ -83,8 +83,7 @@ public class ManejoVisual {
         cs.envioData(opcion);
        }
        private void inicioBR(){
-           cs.inicioBuffer();
-           
+           cs.inicioBuffer();    
        }
        private void cierre(){
            cs.reciveData();
@@ -92,5 +91,5 @@ public class ManejoVisual {
         cs.finData();
         cs.finCierre();
        }
-    
+       
 }
