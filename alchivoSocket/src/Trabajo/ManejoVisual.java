@@ -28,31 +28,7 @@ public class ManejoVisual {
     public String[] getLista() {
         return lista;
     }
-	
-    
-    public ManejoVisual(String usuario,char[]pass) {
-       cs = new ClienteSocket();
-       opcion=2+"";
-         inicio();
-        cs.envioData(usuario);
-        cs.envioData(String.valueOf(pass));
-        cs.reciveData();
-        numero=cs.getMensaje();
-        lista=cs.getListaArchivos();//envio de parametro 
-        cs.envioData(7+"");
-        cs.reciveData();
-        recalculoHora(cs.getMensaje());
-        mensaje="";
-          cierre();
-        
-    }
-    private void recalculoHora(String hora){
-        
-    }
-    private String obtenerHora(){
-        DateFormat df = new SimpleDateFormat("hh:mm:ss:SSS");
-            return df.format(new Date());
-    }
+	 //crear usuario 
        public ManejoVisual(String nombres,String email,String usuario,String fecha,char[]pass) {
         //this.cs = new ClienteSocket(usuario, pass);
          cs = new ClienteSocket();
@@ -62,12 +38,54 @@ public class ManejoVisual {
          cs.envioData(email);
         cs.envioData(usuario);
         cs.envioData(String.valueOf(pass));
+        
         cierre();
-        numero=mensaje;
         mensaje="";
 
 
-       }    
+       }   
+    //logueo 
+    public ManejoVisual(String usuario,char[]pass) {
+       cs = new ClienteSocket();
+       opcion=2+"";
+         inicio();
+        cs.envioData(usuario);
+        cs.envioData(String.valueOf(pass));
+        cs.reciveData();
+        numero=cs.getMensaje();
+        lista=cs.getListaArchivos();//envio de parametro 
+        hora1=obtenerHora();
+        cs.envioData(7+"");
+        cs.reciveData();
+        hora2=obtenerHora();
+          cierre();
+       mensaje=cs.getMensaje();
+    }
+    public void envioArchivo(String archivo){
+           opcion=5+"";
+           mensaje=archivo;
+           envioArchivo();
+           
+           cierre();
+       }
+    private void recalculoHora(String hora){
+        String [] h1=hora1.split(":");
+        String [] h2=hora2.split(":");
+        String [] h3=hora.split(":");
+        String ht="";
+       for (int i=0;i<h1.length-1;i++){
+           if(i>0)ht=ht+":";
+           ht=ht+((Integer.parseInt(h2[i])-Integer.parseInt(h1[i]))+Integer.parseInt(h3[i]));
+       }
+        manejoHora(ht);
+        
+        
+    }
+    private String obtenerHora(){
+        DateFormat df = new SimpleDateFormat("HH:mm:ss:SSS");
+            return df.format(new Date());
+    }
+    
 
        
        
@@ -105,7 +123,7 @@ public class ManejoVisual {
            opcion=5+"";
             inicio();    
             inicioBR();
-           cs.envioData(numero);
+           //cs.envioData(numero);
            //en mensaje envio path
             cs.enviaFichero(mensaje);
             
