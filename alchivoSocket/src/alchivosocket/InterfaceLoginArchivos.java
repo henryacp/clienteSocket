@@ -549,6 +549,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
        
        mv=new ManejoVisual(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
                 reset(1);
+                System.out.println("control de numero para el logueo      "+mv.getNumero());
               if (mv.getNumero().equals("false")==false){
                   dml = new DefaultListModel();
                   String [] lista=mv.getLista();

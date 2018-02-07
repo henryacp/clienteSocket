@@ -58,8 +58,9 @@ public class ManejoVisual {
         cs.envioData(usuario);
         cs.envioData(String.valueOf(pass));
         cs.reciveData();
-        cs.listaArchivos();
         numero=cs.getMensaje();
+        System.out.println(numero);
+        cs.listaArchivos();
         lista=cs.getListaArchivos();//envio de parametro 
         
           cierre();
