@@ -58,6 +58,7 @@ public class ManejoVisual {
         cs.envioData(usuario);
         cs.envioData(String.valueOf(pass));
         cs.reciveData();
+        cs.listaArchivos();
         numero=cs.getMensaje();
         lista=cs.getListaArchivos();//envio de parametro 
         
