@@ -9,6 +9,7 @@ import Trabajo.ManejoVisual;
 import com.placeholder.PlaceHolder;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -493,10 +494,13 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
        // ClienteSocket cs=new ClienteSocket(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
               
        jTabbedPane.add("Manejo de archivos",jPanelManejoArchivos);
-              //if   
+       mv=new ManejoVisual(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
+       
+              if (mv.getMensaje().equals("false")==false){
        jTabbedPane.setSelectedComponent(jPanelManejoArchivos);
         jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
-        jTabbedPane.remove(jPanelLogin);
+        jTabbedPane.remove(jPanelLogin);}
+              else{ JOptionPane.showMessageDialog(null,"Lo sinento no está logueado");}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldMARutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMARutaActionPerformed

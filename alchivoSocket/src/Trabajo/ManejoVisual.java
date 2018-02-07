@@ -41,7 +41,7 @@ public class ManejoVisual {
           cs.reciveData();
         mensaje=cs.getMensaje();
         cierre();
-        mensaje="";
+        //mensaje="";
 
 
        }   
@@ -63,11 +63,31 @@ public class ManejoVisual {
        mensaje=cs.getMensaje();
     }
     public void envioArchivo(String archivo){
-           mensaje=archivo;
-           envioArchivo();
-           
+           opcion=5+"";
+           inicio();
+           inicioBR();
+           cs.enviaFichero(archivo);
+           cs.finBuffer();
            cierre();
        }
+    
+    public void recibeArchivo(String archivo){
+        
+        opcion=8+"";
+        inicioBR();
+        inicio();
+        cs.descargar(archivo);
+        cs.finBuffer();
+        cierre();
+    }
+    public void eliminarArchivo(String archivo){
+        opcion=9+"";
+        inicio();
+        inicioBR();
+        cs.envioData(archivo);
+        cierre();
+    }
+    
     private void recalculoHora(String hora){
         String [] h1=hora1.split(":");
         String [] h2=hora2.split(":");
@@ -75,7 +95,7 @@ public class ManejoVisual {
         String ht="";
        for (int i=0;i<h1.length-1;i++){
            if(i>0)ht=ht+":";
-           ht=ht+((Integer.parseInt(h2[i])-Integer.parseInt(h1[i]))+Integer.parseInt(h3[i]));
+           ht=ht+(((Integer.parseInt(h2[i])-Integer.parseInt(h1[i]))/2)+Integer.parseInt(h3[i]));
        }
         manejoHora(ht);
         
@@ -118,26 +138,8 @@ public class ManejoVisual {
     }
       
        
-       public void envioArchivo (){
-           cs=new ClienteSocket();
-           opcion=5+"";
-            inicio();    
-            inicioBR();
-           //cs.envioData(numero);
-           //en mensaje envio path
-            cs.enviaFichero(mensaje);
-            cs.finBuffer();
-            cierre();
-       }
-       public void recibeArchivo (String archivo){
-           opcion=8+"";
-           inicio();
-           inicioBR();
-           cs.descargar(archivo);
-           cs.finBuffer();
-           cierre();
-           
-       }
+     
+       
        
        
        
