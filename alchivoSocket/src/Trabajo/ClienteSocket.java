@@ -76,6 +76,8 @@ public class ClienteSocket {
         public void listaArchivos(){
            
         try {
+            is= client.getInputStream();
+
             ois = new ObjectInputStream(is);
              listaArchivos = (String[]) ois.readObject();
 			for (int i = 0; i < listaArchivos.length; i++) {
