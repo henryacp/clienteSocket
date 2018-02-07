@@ -549,19 +549,19 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
        
        mv=new ManejoVisual(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
                 reset(1);
-              if (mv.getMensaje().equals("false")==false){
-                 
-                  manejoPaneles(2);
-                  
-        jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
-        }
-              else{ JOptionPane.showMessageDialog(null,"Lo sinento no está logueado");}
-                    dml = new DefaultListModel();
+              if (mv.getNumero().equals("false")==false){
+                  dml = new DefaultListModel();
                   String [] lista=mv.getLista();
                   for(int i=0;i<lista.length;i++){
                       dml.addElement(lista[i]);
                   }
                   jListMAArchivosEnServidor=new JList (dml);
+                  manejoPaneles(2);
+                  
+        jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
+        }
+              else{ JOptionPane.showMessageDialog(null,"Lo sinento no está logueado");}
+                   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldMARutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMARutaActionPerformed

@@ -65,6 +65,10 @@ public class ManejoVisual {
           cierre();
           hora();
     }
+
+    public String getNumero() {
+        return numero;
+    }
     public void envioArchivo(String archivo){
            opcion=5+"";
            inicio();
