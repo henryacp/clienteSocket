@@ -60,12 +60,9 @@ public class ManejoVisual {
         cs.reciveData();
         numero=cs.getMensaje();
         lista=cs.getListaArchivos();//envio de parametro 
-        hora1=obtenerHora();
-        cs.envioData(7+"");
-        cs.reciveData();
-        hora2=obtenerHora();
+        
           cierre();
-       mensaje=cs.getMensaje();
+          hora();
     }
     public void envioArchivo(String archivo){
            opcion=5+"";
@@ -76,7 +73,17 @@ public class ManejoVisual {
            cs.finBuffer();
            cierre();
        }
-    
+    public void hora(){
+        hora1=obtenerHora();
+        
+        opcion=(7+"");
+        inicio();
+        cs.reciveData();
+        hora2=obtenerHora();
+        cierre();
+        mensaje=cs.getMensaje();
+        
+    }
     public void recibeArchivo(String archivo,String nombre){
         
         opcion=8+"";
