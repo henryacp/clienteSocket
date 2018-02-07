@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,10 @@ public class ManejoVisual {
     private String[] lista;
     private String hora1;
     private String hora2;
+
+    public ManejoVisual() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public String[] getLista() {
         return lista;
     }
@@ -66,16 +71,25 @@ public class ManejoVisual {
            opcion=5+"";
            inicio();
            inicioBR();
+           cs.envioData(numero);
            cs.enviaFichero(archivo);
            cs.finBuffer();
            cierre();
        }
     
-    public void recibeArchivo(String archivo){
+    public void recibeArchivo(String archivo,String nombre){
         
         opcion=8+"";
         inicioBR();
         inicio();
+        
+           cs.reciveData();
+           JOptionPane.showMessageDialog(null,cs.getMensaje());
+            cs.envioData(numero);
+            
+            
+       cs.envioData(nombre);
+        
         cs.descargar(archivo);
         cs.finBuffer();
         cierre();
@@ -84,6 +98,7 @@ public class ManejoVisual {
         opcion=9+"";
         inicio();
         inicioBR();
+           cs.envioData(numero);
         cs.envioData(archivo);
         cierre();
     }

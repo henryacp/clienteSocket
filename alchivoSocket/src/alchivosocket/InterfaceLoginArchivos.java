@@ -8,7 +8,9 @@ package alchivosocket;
 import Trabajo.ManejoVisual;
 import com.placeholder.PlaceHolder;
 import java.io.File;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +22,7 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
     private ManejoVisual mv;
     private String ruta;
     private javax.swing.JFileChooser jF1;
+    private DefaultListModel dml;
     /**
      * Creates new form InterfaceLoginArchivos
      */
@@ -42,13 +45,31 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         holder=new PlaceHolder(jPasswordField1, "Ingrese su contraseña personal");
         
        
-        jPanelManejoArchivos.setVisible(false);
-        jTabbedPane.remove(jPanelCrearUsuario);
-        jTabbedPane.remove(jPanelManejoArchivos);
+        //jPanelManejoArchivos.setVisible(false);
+        manejoPaneles(1);
+        
         
         
     }
-
+    private void manejoPaneles(int aparece){
+                jTabbedPane.remove(jPanelCrearUsuario);
+                jTabbedPane.remove(jPanelManejoArchivos);
+                jTabbedPane.remove(jPanelLogin);
+                
+        switch (aparece){
+            case 1:
+                jTabbedPane.add(jPanelLogin, "Inicio de Sesion");
+                break;
+            case 2:
+                jTabbedPane.add(jPanelManejoArchivos, "Manejo de Archivos ");
+                break;
+            case 3:    
+                jTabbedPane.add(jPanelCrearUsuario, "Crear Usuario");
+                break;
+                
+                
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,6 +100,7 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButtonMADescarga = new javax.swing.JButton();
         jButtonMACerrarSesion = new javax.swing.JButton();
+        jButtonMABorrar = new javax.swing.JButton();
         jPanelCrearUsuario = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -163,6 +185,11 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         jPanelLogin.add(jButton1, gridBagConstraints);
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -240,6 +267,18 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         });
 
         jButtonMACerrarSesion.setText("Cerrar Sesion");
+        jButtonMACerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMACerrarSesionActionPerformed(evt);
+            }
+        });
+
+        jButtonMABorrar.setText("Borrar");
+        jButtonMABorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMABorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelManejoArchivosLayout = new javax.swing.GroupLayout(jPanelManejoArchivos);
         jPanelManejoArchivos.setLayout(jPanelManejoArchivosLayout);
@@ -255,7 +294,9 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonMADescarga, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelManejoArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonMADescarga, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                            .addComponent(jButtonMABorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanelManejoArchivosLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3)))
@@ -269,7 +310,7 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonMABuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonMACerrarSesion))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
         jPanelManejoArchivosLayout.setVerticalGroup(
             jPanelManejoArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +330,10 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanelManejoArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonMADescarga))
+                    .addGroup(jPanelManejoArchivosLayout.createSequentialGroup()
+                        .addComponent(jButtonMADescarga)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonMABorrar)))
                 .addContainerGap())
         );
 
@@ -329,6 +373,11 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
         });
 
         jButtonCUCancelar.setText("Cancelar");
+        jButtonCUCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCUCancelarActionPerformed(evt);
+            }
+        });
 
         jPasswordFieldPass2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -357,7 +406,12 @@ public class InterfaceLoginArchivos extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Iniciode sesion");
+        jButton4.setText("Inicio de sesion");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCrearUsuarioLayout = new javax.swing.GroupLayout(jPanelCrearUsuario);
         jPanelCrearUsuario.setLayout(jPanelCrearUsuarioLayout);
@@ -492,14 +546,20 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        // ClienteSocket cs=new ClienteSocket(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
-              
-       jTabbedPane.add("Manejo de archivos",jPanelManejoArchivos);
-       mv=new ManejoVisual(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
        
+       mv=new ManejoVisual(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
+                reset(1);
               if (mv.getMensaje().equals("false")==false){
-       jTabbedPane.setSelectedComponent(jPanelManejoArchivos);
+                  dml = new DefaultListModel();
+                  String [] lista=mv.getLista();
+                  for(int i=0;i<lista.length;i++){
+                      dml.addElement(lista[i]);
+                  }
+                  jListMAArchivosEnServidor=new JList (dml);
+                  manejoPaneles(2);
+                  
         jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
-        jTabbedPane.remove(jPanelLogin);}
+        }
               else{ JOptionPane.showMessageDialog(null,"Lo sinento no está logueado");}
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -511,6 +571,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
         jButtonMASubir.setEnabled(true);
         jButtonMADescarga.setEnabled(false);
+        jButtonMABorrar.setEnabled(false);
         jF1= new javax.swing.JFileChooser(); 
         jF1.setFileSelectionMode(JFileChooser.FILES_ONLY);
         rutas();
@@ -525,25 +586,25 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
 
     private void jButtonMASubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMASubirActionPerformed
         // TODO add your handling code here:
-        jTabbedPane.add("Inicio de Sesion",jPanelLogin);
-        jTabbedPane.setSelectedComponent(jPanelLogin);
+        mv.envioArchivo(ruta);
+        String[] vect=ruta.split("//");
+        dml.addElement(vect[vect.length-1]);
+        jListMAArchivosEnServidor=new JList(dml);
     }//GEN-LAST:event_jButtonMASubirActionPerformed
 
     private void jListMAArchivosEnServidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMAArchivosEnServidorMouseClicked
         // TODO add your handling code here:
                 jButtonMASubir.setEnabled(false);
         jButtonMADescarga.setEnabled(true);
+        jButtonMABorrar.setEnabled(true);
        // jButtonMADescarga.setText("Descargar "+jListMAArchivosEnServidor.getSelectedValue());
         ////aqui no evalu el ultimo elemento selecionado 
     }//GEN-LAST:event_jListMAArchivosEnServidorMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        jTabbedPane.remove(jPanelLogin);
-        jTabbedPane.add("Crear Usuario",jPanelCrearUsuario);
-
-        jTabbedPane.setSelectedComponent(jPanelCrearUsuario);
-
+            reset(1);
+            manejoPaneles(3);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonMADescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMADescargaActionPerformed
@@ -558,7 +619,7 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
 //jF1.setFileFilter(filtro);
         rutas();
                 jTextFieldMARuta.setText(ruta);
-
+                mv.recibeArchivo(ruta,jListMAArchivosEnServidor.getSelectedValue());
         
     }//GEN-LAST:event_jButtonMADescargaActionPerformed
 
@@ -566,7 +627,8 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
         
         ManejoVisual mv=new ManejoVisual(jTextFieldCUNombre.getText(), jTextFieldCUCorreo1.getText(), jTextFieldCUSeudonimo.getText(), jDateChooserCUNacimiento.getDateFormatString(), jPasswordField1.getPassword());
-        
+        reset(3);
+        manejoPaneles(1);
         
         
         
@@ -606,6 +668,68 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         //aqui si se evalua 
         System.out.println(jListMAArchivosEnServidor.getSelectedValue());
     }//GEN-LAST:event_jListMAArchivosEnServidorFocusLost
+
+    private void jButtonMACerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMACerrarSesionActionPerformed
+        // TODO add your handling code here:
+        mv=new ManejoVisual();
+        reset(2);
+        manejoPaneles(1);
+    }//GEN-LAST:event_jButtonMACerrarSesionActionPerformed
+      private void reset(int opcion){
+          
+          switch(opcion){
+              case 1:
+                  
+                  jTextfieldLoginNombre.setText("");
+                  jPasswordFieldLoginPass.setText("");
+                          
+          break;
+              case 2:
+                    jTextFieldMARuta.setText("");
+                    jListMAArchivosEnServidor.removeAll();
+                    jButtonMADescarga.setEnabled(false);
+                    jButtonMASubir.setEnabled(false);
+          break;
+              case 3:
+                  
+                    jTextFieldCUCorreo1.setText("");
+                    jTextFieldCUCorreo2.setText("");
+                    jTextFieldCUNombre.setText("");
+                    jTextFieldCUSeudonimo.setText("");
+                    jTextFieldCUTelefono.setText("");
+                    jPasswordField1.setText("");
+                    jPasswordFieldPass2.setText("");
+                    jDateChooserCUNacimiento.setToolTipText("");
+          break;
+          
+          
+          }
+          
+          
+      }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        reset(1);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        reset(3);
+        manejoPaneles(1);
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButtonCUCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCUCancelarActionPerformed
+        // TODO add your handling code here:
+        reset(3);
+    }//GEN-LAST:event_jButtonCUCancelarActionPerformed
+
+    private void jButtonMABorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMABorrarActionPerformed
+        // TODO add your handling code here:
+        mv.eliminarArchivo(jListMAArchivosEnServidor.getSelectedValue());
+        dml.remove(jListMAArchivosEnServidor.getSelectedIndex());
+        jListMAArchivosEnServidor=new JList(dml);
+    }//GEN-LAST:event_jButtonMABorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -662,6 +786,7 @@ ex.printStackTrace();
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonCUCancelar;
     private javax.swing.JButton jButtonCUGuardar;
+    private javax.swing.JButton jButtonMABorrar;
     private javax.swing.JButton jButtonMABuscar;
     private javax.swing.JButton jButtonMACerrarSesion;
     private javax.swing.JButton jButtonMADescarga;
