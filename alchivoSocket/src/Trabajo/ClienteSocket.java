@@ -32,11 +32,12 @@ public class ClienteSocket {
     private String mensaje;
     private ObjectInputStream ois;
     private String [] listaArchivos;
+    private String ip="192.168.0.103";
    // private String filename;
    
         public void inicio() {
         try {
-            servidor = InetAddress.getByName("172.17.209.28");
+            servidor = InetAddress.getByName(ip);
             client = new Socket(servidor, puerto);
             mensaje="";
         } catch (UnknownHostException ex) {
@@ -110,7 +111,9 @@ public class ClienteSocket {
     }    
     public void enviaFichero(String filename) {
         localFile = new File(filename);
+        
         try {
+            inicioBuffer();
             //inicioBuffer();
             //inicioData();
             //enviamos codigo de verificacion 
@@ -135,17 +138,65 @@ public class ClienteSocket {
     public void descargar (String archivo){
         try {
             //Recibimos el nombre del fichero
-            byteArray = new byte[8192];
-           /// filename = dis.readUTF();
+            byte []byteArray1 = new byte[1024];
+                        //inicioBuffer();
+              BufferedInputStream  bis1 = new BufferedInputStream(client.getInputStream());
+                        /// filename = dis.readUTF();
            String  filename = archivo;
+            System.out.println(archivo);
              BufferedOutputStream bos1 = new BufferedOutputStream(new FileOutputStream(filename));
-            while ((in = bis.read(byteArray)) != -1){
-                    bos1.write(byteArray,0,in);
+            while ((in = bis1.read(byteArray1)) != -1){
+                    bos1.write(byteArray1,0,in);
                     }
-            
+            bos1.close();
+            bis1.close();
         } catch (IOException ex) {
             Logger.getLogger(ClienteSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+        
+    
+    
+    
+    
+    public String listar(String codigo, String nombre,String ruta) {
+		// TODO Auto-generated method stub
+
+		boolean comprobarConexion = false;
+		try {
+			System.out.println("ConexiÃ³n al servidor con la IP " + ip + " en el puerto " + puerto);
+			Socket socket = new Socket(ip, puerto);
+			System.out.println("Solo conexiÃ³n a " + socket.getRemoteSocketAddress());
+			OutputStream outputStream = socket.getOutputStream();
+			DataOutputStream out = new DataOutputStream(outputStream);
+			out.writeUTF(""+8);
+			out.writeUTF(codigo);
+			out.writeUTF(nombre);
+			InputStream inputStream = socket.getInputStream();
+			DataInputStream in = new DataInputStream(inputStream);
+			int inData;
+			if(in.readUTF().equals("descargando")) {
+				byte[] receivedData = new byte[1024];
+				BufferedInputStream bis = new BufferedInputStream(inputStream);
+				String nombreArchivo = in.readUTF();
+				String directorioPath = ruta;
+				directorioPath = ruta;
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(directorioPath));
+				while ((inData = bis.read(receivedData)) != -1) {
+					bos.write(receivedData, 0, inData);
+				}
+				bos.close();
+			}
+			
+			socket.close();
+			System.out.println();
+			System.out.println("<===========================================>");
+			System.out.println();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	
        
     }
         public void finBuffer() {

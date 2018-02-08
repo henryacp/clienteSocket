@@ -549,14 +549,14 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
        
        mv=new ManejoVisual(jTextfieldLoginNombre.getText(), jPasswordFieldLoginPass.getPassword());
                 reset(1);
+                dml=new DefaultListModel();
                 System.out.println("control de numero para el logueo      "+mv.getNumero());
               if (mv.getNumero().equals("false")==false){
-                  dml = new DefaultListModel();
                   String [] lista=mv.getLista();
                   for(int i=0;i<lista.length;i++){
                       dml.addElement(lista[i]);
                   }
-                  jListMAArchivosEnServidor=new JList (dml);
+                  jListMAArchivosEnServidor.setModel(dml);
                   manejoPaneles(2);
                   
         jLabelMAHeader.setText("Bien venido "+jTextfieldLoginNombre.getText());
@@ -589,9 +589,12 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
     private void jButtonMASubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMASubirActionPerformed
         // TODO add your handling code here:
         mv.envioArchivo(ruta);
-        String[] vect=ruta.split("//");
+        String[] vect=ruta.split("\\");
+        System.out.println(vect[vect.length-1]);
+       
         dml.addElement(vect[vect.length-1]);
-        jListMAArchivosEnServidor=new JList(dml);
+        jListMAArchivosEnServidor=new JList<>();
+        jListMAArchivosEnServidor.setModel(dml);
     }//GEN-LAST:event_jButtonMASubirActionPerformed
 
     private void jListMAArchivosEnServidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMAArchivosEnServidorMouseClicked
@@ -730,7 +733,8 @@ jPasswordFieldLoginPass.setEchoChar((char)0);
         // TODO add your handling code here:
         mv.eliminarArchivo(jListMAArchivosEnServidor.getSelectedValue());
         dml.remove(jListMAArchivosEnServidor.getSelectedIndex());
-        jListMAArchivosEnServidor=new JList(dml);
+        
+        jListMAArchivosEnServidor.setModel(dml);
     }//GEN-LAST:event_jButtonMABorrarActionPerformed
 
     /**

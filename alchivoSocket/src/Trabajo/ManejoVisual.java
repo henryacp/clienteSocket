@@ -28,7 +28,7 @@ public class ManejoVisual {
     private String hora2;
 
     public ManejoVisual() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
     }
     public String[] getLista() {
         return lista;
@@ -60,9 +60,10 @@ public class ManejoVisual {
         cs.reciveData();
         numero=cs.getMensaje();
         System.out.println(numero);
+        if(numero.equals("false")==false){
         cs.listaArchivos();
         lista=cs.getListaArchivos();//envio de parametro 
-        
+        }
           cierre();
           hora();
     }
@@ -72,8 +73,11 @@ public class ManejoVisual {
     }
     public void envioArchivo(String archivo){
            opcion=5+"";
+           System.out.println("envio :   "+archivo);
            inicio();
-           inicioBR();
+           //inicioBR();
+                      System.out.println("envio :   "+archivo);
+
            cs.envioData(numero);
            cs.enviaFichero(archivo);
            cs.finBuffer();
@@ -86,31 +90,33 @@ public class ManejoVisual {
         inicio();
         cs.reciveData();
         hora2=obtenerHora();
+        
         cierre();
         mensaje=cs.getMensaje();
+        recalculoHora(mensaje);
         
     }
-    public void recibeArchivo(String archivo,String nombre){
+    public void recibeArchivo(String ruta,String nombre){
         
         opcion=8+"";
-        inicioBR();
+        //inicioBR();
         inicio();
-        
-           cs.reciveData();
-           JOptionPane.showMessageDialog(null,cs.getMensaje());
-            cs.envioData(numero);
+          cs.envioData(numero);
+
             
             
        cs.envioData(nombre);
-        
-        cs.descargar(archivo);
-        cs.finBuffer();
+        cs.reciveData();
+           JOptionPane.showMessageDialog(null,cs.getMensaje());
+          cs.reciveData();
+        cs.descargar(ruta);
+        //cs.finBuffer();
         cierre();
+       //cs.listar(numero, nombre, ruta);
     }
     public void eliminarArchivo(String archivo){
         opcion=9+"";
         inicio();
-        inicioBR();
            cs.envioData(numero);
         cs.envioData(archivo);
         cierre();
